@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -20,6 +21,20 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	
 	private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+	private BufferedImage spriteSheet = null;
+	
+	public void init() {
+		
+		BufferedImageLoader loader = new BufferedImageLoader();
+		try {
+			
+			spriteSheet = loader.loadImage("/sprite_sheet.png");
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	private synchronized void start() {
 		if(running)
@@ -45,7 +60,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void run() {
-		
+		init();
 		long  lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
