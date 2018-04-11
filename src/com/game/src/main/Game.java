@@ -23,6 +23,9 @@ public class Game extends Canvas implements Runnable {
 	
 	private BufferedImage image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
 	private BufferedImage spriteSheet = null;
+	private BufferedImage background = null;
+	
+	private boolean is_shooting = false;
 	
 	private Player p;
 	private Controller c;
@@ -33,7 +36,7 @@ public class Game extends Canvas implements Runnable {
 		BufferedImageLoader loader = new BufferedImageLoader();
 		try {
 			spriteSheet = loader.loadImage("/sprite_sheet.png");
-			
+			background = loader.loadImage("/background.png");
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -116,6 +119,8 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		/////////////////////////////////
 		g.drawImage(image, 0, 0, getWidth(),getHeight(),this);
+		
+		g.drawImage(background, 0, 0, null);
 		p.render(g);
 		c.render(g);
 		
@@ -139,7 +144,8 @@ public class Game extends Canvas implements Runnable {
 			p.setVelY(5);
 		}else if(key == KeyEvent.VK_UP) {
 			p.setVelY(-5);
-		}else if(key == KeyEvent.VK_SPACE) {
+		}else if(key == KeyEvent.VK_SPACE && !is_shooting) {
+			is_shooting = true;
 			c.addBullet(new Bullet(p.getX(),p.getY(),this));
 		}
 	}
@@ -155,6 +161,8 @@ public class Game extends Canvas implements Runnable {
 			p.setVelY(0);
 		}else if(key == KeyEvent.VK_UP) {
 			p.setVelY(0);
+		}else if(key == KeyEvent.VK_SPACE) {
+			is_shooting = false;
 		}
 	}
 
