@@ -24,6 +24,15 @@ public class Player {
 	public void tick() {
 		x += velX;
 		y += velY;
+		
+		if(x <= 0)
+			x = 0;
+		if(x >= 640 - 22)
+			x = 640 - 22;
+		if(y < 0)
+			y = 0;
+		if(y >= 480 - 33)
+			y = 480 -33;
 	}
 	
 	public void render(Graphics g) {
