@@ -3,6 +3,7 @@ package com.game.src.main;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -30,13 +31,13 @@ public class Game extends Canvas implements Runnable {
 		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		try {
-			
 			spriteSheet = loader.loadImage("/sprite_sheet.png");
 			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 		
+		addKeyListener(new KeyInput(this));
 		p = new Player(200, 200 ,this);
 	}
 	
@@ -123,6 +124,25 @@ public class Game extends Canvas implements Runnable {
 		bs.show();
 		
 	}
+	
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		
+		if(key == KeyEvent.VK_RIGHT) {
+			p.setX(p.getX() + 5);
+		}else if(key == KeyEvent.VK_LEFT) {
+			p.setX(p.getX() - 5);
+		}else if(key == KeyEvent.VK_DOWN) {
+			p.setY(p.getY() + 5);
+		}else if(key == KeyEvent.VK_UP) {
+			p.setY(p.getY() - 5);
+		}
+	}
+	
+	public void keyReleased(KeyEvent e) {
+		
+	}
+
 
 	public static void main(String args[]) {
 		
