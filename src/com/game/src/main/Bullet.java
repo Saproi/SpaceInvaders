@@ -2,7 +2,7 @@ package com.game.src.main;
 
 import java.awt.Graphics;
 
-public class Bullet {
+public class Bullet implements Entity{
 	private double x;
 	private double y;
 	
@@ -23,6 +23,9 @@ public class Bullet {
 	}
 	public double getY() {
 		return y;
+	}
+	public double getX() {
+		return x;
 	}
 
 }

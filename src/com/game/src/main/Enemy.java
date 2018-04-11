@@ -2,7 +2,7 @@ package com.game.src.main;
 
 import java.awt.Graphics;
 
-public class Enemy {
+public class Enemy implements Entity{
 	
 	private double x, y;
 	
@@ -20,6 +20,14 @@ public class Enemy {
 	
 	public void render(Graphics g) {
 		g.drawImage(tex.enemy, (int)x, (int)y, null);
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
 	}
 	
 }
