@@ -29,6 +29,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private Player p;
 	private Controller c;
+	private Textures tex;
 	
 	
 	public void init() {
@@ -42,8 +43,11 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		addKeyListener(new KeyInput(this));
-		p = new Player(200, 200 ,this);
-		c = new Controller(this);
+		
+		tex = new Textures(this);
+		
+		p = new Player(200, 200, tex);
+		c = new Controller(this,tex);
 	}
 	
 	
@@ -146,7 +150,7 @@ public class Game extends Canvas implements Runnable {
 			p.setVelY(-5);
 		}else if(key == KeyEvent.VK_SPACE && !is_shooting) {
 			is_shooting = true;
-			c.addBullet(new Bullet(p.getX(),p.getY(),this));
+			c.addBullet(new Bullet(p.getX(),p.getY(),tex));
 		}
 	}
 	
