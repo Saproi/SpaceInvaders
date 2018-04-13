@@ -1,16 +1,16 @@
 package com.game.src.main;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
-public class Enemy implements Entity{
-	
-	private double x, y;
-	
+import com.game.src.main.classes.EntityB;
+
+public class Enemy extends GameObject implements EntityB{
+		
 	private Textures tex;
 	
 	public Enemy(double x,double y,Textures tex) {
-		this.x = x;
-		this.y = y;
+		super(x,y);
 		this.tex = tex;
 	}
 	
@@ -20,6 +20,9 @@ public class Enemy implements Entity{
 	
 	public void render(Graphics g) {
 		g.drawImage(tex.enemy, (int)x, (int)y, null);
+	}
+	public Rectangle getBounds() {
+		return new Rectangle((int)x,(int)y,32,32);
 	}
 
 	public double getX() {

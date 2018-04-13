@@ -1,11 +1,11 @@
 package com.game.src.main;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
-public class Player {
-	
-	private double x;
-	private double y;
+import com.game.src.main.classes.EntityA;
+
+public class Player extends GameObject implements EntityA{
 	
 	private double velX = 0;
 	private double velY = 0;
@@ -13,8 +13,7 @@ public class Player {
 	private Textures tex;
 	
 	public Player(double x,double y, Textures tex) {
-		this.x = x;
-		this.y = y;
+		super(x,y);
 		this.tex = tex;
 
 	}
@@ -36,6 +35,9 @@ public class Player {
 	public void render(Graphics g) {
 		g.drawImage(tex.player, (int)x, (int)y, null);
 		
+	}
+	public Rectangle getBounds() {
+		return new Rectangle((int)x,(int)y,32,32);
 	}
 	public double getX() {
 		return x;

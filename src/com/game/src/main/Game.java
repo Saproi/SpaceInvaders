@@ -7,8 +7,12 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javax.swing.JFrame;
+
+import com.game.src.main.classes.EntityA;
+import com.game.src.main.classes.EntityB;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -31,6 +35,9 @@ public class Game extends Canvas implements Runnable {
 	private Controller c;
 	private Textures tex;
 	
+	public LinkedList<EntityA> ea;
+	public LinkedList<EntityB> eb;
+	
 	
 	public void init() {
 		requestFocus();
@@ -46,6 +53,9 @@ public class Game extends Canvas implements Runnable {
 		
 		p = new Player(200, 200, tex);
 		c = new Controller(tex);
+		
+		ea = c.getEntityA();
+		eb = c.getEntityB();
 		
 		this.addKeyListener(new KeyInput(this));
 	}
@@ -150,7 +160,7 @@ public class Game extends Canvas implements Runnable {
 			p.setVelY(-5);
 		}else if(key == KeyEvent.VK_SPACE && !is_shooting) {
 			is_shooting = true;
-			c.addEntity(new Bullet(p.getX(),p.getY(),tex));
+			c.addEntity(new Bullet(p.getX(),p.getY(),tex, this));
 		}
 	}
 	
