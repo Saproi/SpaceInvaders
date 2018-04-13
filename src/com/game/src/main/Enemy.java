@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import com.game.src.libs.Animation;
+import com.game.src.main.classes.EntityA;
 import com.game.src.main.classes.EntityB;
 
 public class Enemy extends GameObject implements EntityB{
@@ -36,10 +37,16 @@ public class Enemy extends GameObject implements EntityB{
 			y = -10;
 		}
 		
-		if(Physics.Collision(this, game.ea))
+		for(int i = 0;i < game.ea.size();i++)
 		{
-			c.removeEntity(this);
-			game.setEnemy_killed(game.getEnemy_killed() + 1);
+			EntityA tempEnt = game.ea.get(i);
+			
+			if(Physics.Collision(this, tempEnt))
+			{
+				c.removeEntity(tempEnt);
+				c.removeEntity(this);
+				game.setEnemy_killed(game.getEnemy_killed() + 1);
+			}
 		}
 		anim.runAnimation();
 	}
