@@ -1,6 +1,7 @@
 package com.game.src.main;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -42,6 +43,8 @@ public class Game extends Canvas implements Runnable {
 	public LinkedList<EntityA> ea;
 	public LinkedList<EntityB> eb;
 	
+	public static int HEALTH = 100 * 2;
+	
 	public static enum STATE{
 		MENU,
 		GAME
@@ -61,8 +64,9 @@ public class Game extends Canvas implements Runnable {
 		
 		tex = new Textures(this);
 		
-		p = new Player(200, 200, tex);
+		
 		c = new Controller(tex,this);
+		p = new Player(200, 200, tex,this,c);
 		menu = new Menu();
 		
 		ea = c.getEntityA();
@@ -162,6 +166,16 @@ public class Game extends Canvas implements Runnable {
 		if(State == STATE.GAME) {
 			p.render(g);
 			c.render(g);
+			
+			g.setColor(Color.gray);
+			g.fillRect(5,5,200,50);
+			
+			g.setColor(Color.green);
+			g.fillRect(5,5,HEALTH,50);
+			
+			g.setColor(Color.white);
+			g.drawRect(5,5,200,50);
+		
 		}else if(State == STATE.MENU) {
 			menu.render(g);
 		}
@@ -197,16 +211,18 @@ public class Game extends Canvas implements Runnable {
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		if(key == KeyEvent.VK_RIGHT) {
-			p.setVelX(0);
-		}else if(key == KeyEvent.VK_LEFT) {
-			p.setVelX(0);
-		}else if(key == KeyEvent.VK_DOWN) {
-			p.setVelY(0);
-		}else if(key == KeyEvent.VK_UP) {
-			p.setVelY(0);
-		}else if(key == KeyEvent.VK_SPACE) {
-			is_shooting = false;
+		if(State == STATE.GAME) {
+			if(key == KeyEvent.VK_RIGHT) {
+				p.setVelX(0);
+			}else if(key == KeyEvent.VK_LEFT) {
+				p.setVelX(0);
+			}else if(key == KeyEvent.VK_DOWN) {
+				p.setVelY(0);
+			}else if(key == KeyEvent.VK_UP) {
+				p.setVelY(0);
+			}else if(key == KeyEvent.VK_SPACE) {
+				is_shooting = false;
+			}
 		}
 	}
 

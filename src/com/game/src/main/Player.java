@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import com.game.src.libs.Animation;
 import com.game.src.main.classes.EntityA;
+import com.game.src.main.classes.EntityB;
 
 public class Player extends GameObject implements EntityA{
 	
@@ -13,11 +14,15 @@ public class Player extends GameObject implements EntityA{
 			
 	private Textures tex;
 	
+	Game game;
+	Controller controller;
 	Animation anim;
 	
-	public Player(double x,double y, Textures tex) {
+	public Player(double x,double y, Textures tex,Game game,Controller controller) {
 		super(x,y);
 		this.tex = tex;
+		this.game = game;
+		this.controller = controller;
 		//
 		anim = new Animation(5,tex.player[0],tex.player[1],tex.player[2]);
 
@@ -35,6 +40,18 @@ public class Player extends GameObject implements EntityA{
 			y = 0;
 		if(y >= 480 - 33)
 			y = 480 -33;
+		
+		for(int i = 0; i < game.eb.size();i++)
+		{
+			EntityB tempEnt = game.eb.get(i);
+			
+			if(Physics.Collision(this, tempEnt))
+			{
+				controller.removeEntity(tempEnt);
+				Game.HEALTH -= 10;
+				game.setEnemy_killed(game.getEnemy_killed() + 1);
+			}
+		}
 		anim.runAnimation();
 	}
 	
