@@ -31,6 +31,28 @@ public class Game extends Canvas implements Runnable {
 	
 	private boolean is_shooting = false;
 	
+	private int enemy_count = 5;
+	private int enemy_killed = 0;
+	
+	public int getEnemy_count() {
+		return enemy_count;
+	}
+
+
+	public void setEnemy_count(int enemy_count) {
+		this.enemy_count = enemy_count;
+	}
+
+
+	public int getEnemy_killed() {
+		return enemy_killed;
+	}
+
+
+	public void setEnemy_killed(int enemy_killed) {
+		this.enemy_killed = enemy_killed;
+	}
+
 	private Player p;
 	private Controller c;
 	private Textures tex;
@@ -52,12 +74,14 @@ public class Game extends Canvas implements Runnable {
 		tex = new Textures(this);
 		
 		p = new Player(200, 200, tex);
-		c = new Controller(tex);
+		c = new Controller(tex,this);
 		
 		ea = c.getEntityA();
 		eb = c.getEntityB();
 		
 		this.addKeyListener(new KeyInput(this));
+		c.createEnemy(enemy_count);
+	
 	}
 	
 	
@@ -118,6 +142,13 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 		p.tick();
 		c.tick();
+		
+		if(enemy_killed >= enemy_count)
+		{
+			enemy_count += 2;
+			enemy_killed = 0;
+			c.createEnemy(enemy_count);
+		}
 	}
 	
 	private void render() {

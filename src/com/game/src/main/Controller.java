@@ -17,11 +17,16 @@ public class Controller {
 	
 	private Textures tex;
 	Random r = new Random();
+	private Game game;
 	
-	public Controller(Textures tex) {
+	public Controller(Textures tex,Game game) {
 		this.tex = tex;
-		for(int i = 0; i < 20; i++)
-			addEntity(new Enemy(r.nextInt(640),10,tex));
+		this.game = game;
+	}
+	
+	public void createEnemy(int enemy_count) {
+		for(int i = 0; i < enemy_count; i++)
+			addEntity(new Enemy(r.nextInt(640),-10,tex,this,game));
 	}
 	
 	public void tick() {
