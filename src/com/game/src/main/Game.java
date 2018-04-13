@@ -33,32 +33,20 @@ public class Game extends Canvas implements Runnable {
 	
 	private int enemy_count = 5;
 	private int enemy_killed = 0;
-	
-	public int getEnemy_count() {
-		return enemy_count;
-	}
-
-
-	public void setEnemy_count(int enemy_count) {
-		this.enemy_count = enemy_count;
-	}
-
-
-	public int getEnemy_killed() {
-		return enemy_killed;
-	}
-
-
-	public void setEnemy_killed(int enemy_killed) {
-		this.enemy_killed = enemy_killed;
-	}
 
 	private Player p;
 	private Controller c;
 	private Textures tex;
+	private Menu menu;
 	
 	public LinkedList<EntityA> ea;
 	public LinkedList<EntityB> eb;
+	
+	private enum STATE{
+		MENU,
+		GAME
+	};
+	private STATE State = STATE.MENU;
 	
 	
 	public void init() {
@@ -75,6 +63,7 @@ public class Game extends Canvas implements Runnable {
 		
 		p = new Player(200, 200, tex);
 		c = new Controller(tex,this);
+		menu = new Menu();
 		
 		ea = c.getEntityA();
 		eb = c.getEntityB();
@@ -140,8 +129,10 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		p.tick();
-		c.tick();
+		if(State == STATE.GAME) {
+			p.tick();
+			c.tick();
+		}
 		
 		if(enemy_killed >= enemy_count)
 		{
@@ -165,10 +156,13 @@ public class Game extends Canvas implements Runnable {
 		/////////////////////////////////
 		g.drawImage(image, 0, 0, getWidth(),getHeight(),this);
 		
-		g.drawImage(background, 0, 0, null);
-		p.render(g);
-		c.render(g);
-		
+		g.drawImage(background, 0, 0, this);
+		if(State == STATE.GAME) {
+			p.render(g);
+			c.render(g);
+		}else if(State == STATE.MENU) {
+			menu.render(g);
+		}
 		
 		
 		
@@ -181,18 +175,21 @@ public class Game extends Canvas implements Runnable {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		if(key == KeyEvent.VK_RIGHT) {
-			p.setVelX(5);
-		}else if(key == KeyEvent.VK_LEFT) {
-			p.setVelX(-5);
-		}else if(key == KeyEvent.VK_DOWN) {
-			p.setVelY(5);
-		}else if(key == KeyEvent.VK_UP) {
-			p.setVelY(-5);
-		}else if(key == KeyEvent.VK_SPACE && !is_shooting) {
-			is_shooting = true;
-			c.addEntity(new Bullet(p.getX(),p.getY(),tex, this));
+		if(State == STATE.GAME) {
+			if(key == KeyEvent.VK_RIGHT) {
+				p.setVelX(5);
+			}else if(key == KeyEvent.VK_LEFT) {
+				p.setVelX(-5);
+			}else if(key == KeyEvent.VK_DOWN) {
+				p.setVelY(5);
+			}else if(key == KeyEvent.VK_UP) {
+				p.setVelY(-5);
+			}else if(key == KeyEvent.VK_SPACE && !is_shooting) {
+				is_shooting = true;
+				c.addEntity(new Bullet(p.getX(),p.getY(),tex, this));
+			}
 		}
+		
 	}
 	
 	public void keyReleased(KeyEvent e) {
@@ -233,6 +230,24 @@ public class Game extends Canvas implements Runnable {
 	
 	public BufferedImage getSpriteSheet() {
 		return spriteSheet;
+	}
+	public int getEnemy_count() {
+		return enemy_count;
+	}
+
+
+	public void setEnemy_count(int enemy_count) {
+		this.enemy_count = enemy_count;
+	}
+
+
+	public int getEnemy_killed() {
+		return enemy_killed;
+	}
+
+
+	public void setEnemy_killed(int enemy_killed) {
+		this.enemy_killed = enemy_killed;
 	}
 
 
