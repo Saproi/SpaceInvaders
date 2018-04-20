@@ -10,7 +10,6 @@ import com.game.src.main.classes.EntityB;
 public class Player extends GameObject implements EntityA{
 	
 	private double velX = 0;
-	private double velY = 0;
 			
 	private Textures tex;
 	
@@ -38,18 +37,16 @@ public class Player extends GameObject implements EntityA{
 	 * Actualiza la pantalla
 	 */
 	public void tick() {
-		x += velX;
-		y += velY;
-		
+		if(game.getRight()==true && !game.getLeft()) {
+			x += velX;
+		}
+		if(game.getLeft()==true && !game.getRight()) {
+			x += velX;
+		}
 		if(x <= 0)
 			x = 0;
 		if(x >= 640 - 22)
 			x = 640 - 22;
-		if(y < 0)
-			y = 0;
-		if(y >= 480 - 33)
-			y = 480 -33;
-		
 		for(int i = 0; i < game.eb.size();i++)
 		{
 			EntityB tempEnt = game.eb.get(i);
@@ -89,9 +86,4 @@ public class Player extends GameObject implements EntityA{
 	public void setVelX(double velX) {
 		this.velX = velX;
 	}
-	public void setVelY(double velY) {
-		this.velY = velY;
-	}
-	
-
 }
