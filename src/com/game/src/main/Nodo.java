@@ -1,36 +1,71 @@
 package com.game.src.main;
 /**
- * Clase que define los elementos que debe tener un Nodo de la lista.
- * @author xavier
+ * clase EstructuraDeDatosLineal.Nodo, para almacenar datos, estos forman las listas y sus variaciones
  */
-public class Nodo {
-    // Variable en la cual se va a guardar el valor.
-    private int valor;
-    // Variable para enlazar los nodos.
-    private Nodo siguiente;
+public class Nodo <T> {
     /**
-     * Constructor que inicializamos el valor de las variables.
+     * atributos de tipo nodo, para navegar la lista
+     * atributo de tipo T, que contiene la informacion
      */
-    public Nodo(){
-        this.valor = 0;
+    private Nodo siguiente;
+    private Nodo anterior;
+    private T dato;
+
+    /**
+     * constructor de la clase EstructuraDeDatosLineal.Nodo
+     * @param dato
+     */
+    public Nodo(T dato) {
         this.siguiente = null;
-    }
-    
-    // Métodos get y set para los atributos.
-    
-    public int getValor() {
-        return valor;
+        this.anterior = null;
+        this.dato = dato;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
+    /**
+     * metodo para obtener el siguiente EstructuraDeDatosLineal.Nodo
+     * @return siguiente
+     */
     public Nodo getSiguiente() {
         return siguiente;
     }
 
+    /**
+     * metodo para asignar el siguiente
+     * @param siguiente
+     */
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
-    }   
+    }
+
+    /**
+     * metodo para obtener el EstructuraDeDatosLineal.Nodo anterior
+     * @return anterior
+     */
+    public Nodo getAnterior() {
+        return anterior;
+    }
+
+    /**
+     * metodo para asignar el anterior
+     * @param anterior
+     */
+    public void setAnterior(Nodo anterior) {
+        this.anterior = anterior;
+    }
+
+    /**
+     * metodo para obtener el dato
+     * @return dato
+     */
+    public T getDato() {
+        return dato;
+    }
+
+    /**
+     * metodo para asignar el dato
+     * @param dato
+     */
+    public void setDato(T dato) {
+        this.dato = dato;
+    }
 }
