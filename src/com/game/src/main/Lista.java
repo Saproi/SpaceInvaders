@@ -1,6 +1,6 @@
 package com.game.src.main;
 /**
- * clase Principal de EstructuraDeDatosLineal.Listas
+ * clase Principal
  */
 
 public class Lista<T> {

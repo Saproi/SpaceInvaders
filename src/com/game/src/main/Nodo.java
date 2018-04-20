@@ -1,6 +1,6 @@
 package com.game.src.main;
 /**
- * clase EstructuraDeDatosLineal.Nodo, para almacenar datos, estos forman las listas y sus variaciones
+ * clase para almacenar datos, estos forman las listas y sus variaciones
  */
 public class Nodo <T> {
     /**
@@ -12,7 +12,7 @@ public class Nodo <T> {
     private T dato;
 
     /**
-     * constructor de la clase EstructuraDeDatosLineal.Nodo
+     * constructor
      * @param dato
      */
     public Nodo(T dato) {
