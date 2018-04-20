@@ -12,7 +12,13 @@ public class Bullet extends GameObject implements EntityA{
 	private Game game;
 	
 	Animation anim;
-
+	/**
+	 * 
+	 * @param x posicion en eje x
+	 * @param y posicion en eje y
+	 * @param tex imagen asociada a bala
+	 * @param game instancia del juego
+	 */
 	public Bullet(double x,double y, Textures tex,Game game) {
 		super(x,y);
 		this.tex = tex;
@@ -20,17 +26,24 @@ public class Bullet extends GameObject implements EntityA{
 		
 		anim = new Animation(5,tex.missile[0],tex.missile[1],tex.missile[2]);
 	}
-	
+	/**
+	 * Actualiza pantalla
+	 */
 	public void tick() {
 		y -= 4;
 		anim.runAnimation();
 	}
-	
+	/**
+	 * Muestra en pantalla
+	 */
 	public void render(Graphics g) {
 		//g.drawImage(tex.missile, (int)x, (int)y, null);
 		//g.drawImage(tex.missile[0], (int)x, (int)y, null);
 		anim.drawAnimation(g, x, y, 0);
 	}
+	/**
+	 * Obtiene limites del rectangulo
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,32,32);
 	}

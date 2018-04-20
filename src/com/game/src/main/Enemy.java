@@ -18,7 +18,14 @@ public class Enemy extends GameObject implements EntityB{
 	private int speed = r.nextInt(3) + 1;
 	
 	Animation anim;
-	
+	/**
+	 * 
+	 * @param x posicion eje x
+	 * @param y posicion eje y
+	 * @param tex imagen
+	 * @param c control
+	 * @param game instancia juego
+	 */
 	public Enemy(double x,double y,Textures tex,Controller c,Game game) {
 		super(x,y);
 		this.tex = tex;
@@ -27,7 +34,9 @@ public class Enemy extends GameObject implements EntityB{
 		
 		anim = new Animation(5,tex.enemy[0],tex.enemy[1],tex.enemy[2]);
 	}
-	
+	/**
+	 * Actualiza pantalla
+	 */
 	public void tick() {
 		y += speed;
 		
@@ -50,20 +59,29 @@ public class Enemy extends GameObject implements EntityB{
 		}
 		anim.runAnimation();
 	}
-	
+	/**
+	 * Muestra en pantalla 
+	 */
 	public void render(Graphics g) {
 		//g.drawImage(tex.enemy, (int)x, (int)y, null);
 		//g.drawImage(tex.enemy[0], (int)x, (int)y, null);
 		anim.drawAnimation(g, x, y, 0);
 	}
+	/**
+	 * 
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,32,32);
 	}
-
+	/**
+	 * 
+	 */
 	public double getX() {
 		return x;
 	}
-
+	/**
+	 * 
+	 */
 	public double getY() {
 		return y;
 	}

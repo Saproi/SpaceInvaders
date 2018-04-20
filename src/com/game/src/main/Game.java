@@ -44,14 +44,20 @@ public class Game extends Canvas implements Runnable {
 	public LinkedList<EntityB> eb;
 	
 	public static int HEALTH = 100 * 2;
-	
+	/**
+	 * 
+	 * @author Saproi
+	 *
+	 */
 	public static enum STATE{
 		MENU,
 		GAME
 	};
 	public static STATE State = STATE.MENU;
 	
-	
+	/**
+	 * Inicia todo lo necesario para que funcione el juego
+	 */
 	public void init() {
 		requestFocus();
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -79,7 +85,9 @@ public class Game extends Canvas implements Runnable {
 	
 	}
 	
-	
+	/**
+	 * Thread de comienzo
+	 */
 	private synchronized void start() {
 		if(running)
 			return;
@@ -88,7 +96,9 @@ public class Game extends Canvas implements Runnable {
 		thread = new Thread(this);
 		thread.start();
 	}
-	
+	/**
+	 * Thread para finalizar
+	 */
 	private synchronized void stop() {
 		if(!running)
 			return;
@@ -102,7 +112,9 @@ public class Game extends Canvas implements Runnable {
 		System.exit(1);
 		
 	}
-	
+	/**
+	 * Corazon del juego
+	 */
 	public void run() {
 		init();
 		long  lastTime = System.nanoTime();
@@ -133,7 +145,9 @@ public class Game extends Canvas implements Runnable {
 		}
 		stop();
 	}
-	
+	/**
+	 * Actualiza la pantalla
+	 */
 	private void tick() {
 		if(State == STATE.GAME) {
 			p.tick();
@@ -147,7 +161,9 @@ public class Game extends Canvas implements Runnable {
 			c.createEnemy(enemy_count);
 		}
 	}
-	
+	/**
+	 * Muestra en pantalla los elementos
+	 */
 	private void render() {
 		
 		BufferStrategy bs = this.getBufferStrategy();
@@ -187,7 +203,10 @@ public class Game extends Canvas implements Runnable {
 		bs.show();
 		
 	}
-	
+	/**
+	 * Detecta las entradas del teclado
+	 * @param e es la entrada del teclado
+	 */
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
@@ -207,7 +226,10 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 	}
-	
+	/**
+	 * Detecta cuando se suelta una tecla
+	 * @param e entrada del teclado
+	 */
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		
@@ -226,7 +248,9 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
-
+	/**
+	 * Inicia la instancia Game
+	 */
 	public static void main(String args[]) {
 		
 		Game game = new Game();

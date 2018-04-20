@@ -6,7 +6,10 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter {
 	
 	Game game;
-	
+	/**
+	 * 
+	 * @param game instancia del juego
+	 */
 	public KeyInput(Game game) {
 		this.game = game;
 	}

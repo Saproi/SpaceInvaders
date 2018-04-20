@@ -2,7 +2,11 @@ package com.game.src.main.classes;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
+/**
+ * 
+ * @author Saproi
+ * Interfaz para objeto EntidadB
+ */
 public interface EntityB {
 	
 	public void tick();

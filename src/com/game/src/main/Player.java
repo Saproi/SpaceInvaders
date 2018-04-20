@@ -17,7 +17,14 @@ public class Player extends GameObject implements EntityA{
 	Game game;
 	Controller controller;
 	Animation anim;
-	
+	/**
+	 * 
+	 * @param x posicion eje x
+	 * @param y posicion eje y
+	 * @param tex imagen
+	 * @param game instancia del juego
+	 * @param controller instancia controller
+	 */
 	public Player(double x,double y, Textures tex,Game game,Controller controller) {
 		super(x,y);
 		this.tex = tex;
@@ -27,7 +34,9 @@ public class Player extends GameObject implements EntityA{
 		anim = new Animation(5,tex.player[0],tex.player[1],tex.player[2]);
 
 	}
-	
+	/**
+	 * Actualiza la pantalla
+	 */
 	public void tick() {
 		x += velX;
 		y += velY;
@@ -54,7 +63,9 @@ public class Player extends GameObject implements EntityA{
 		}
 		anim.runAnimation();
 	}
-	
+	/**
+	 * Muestra en pantalla
+	 */
 	public void render(Graphics g) {
 		//g.drawImage(tex.player, (int)x, (int)y, null);
 		//g.drawImage(tex.player[0], (int)x, (int)y, null);

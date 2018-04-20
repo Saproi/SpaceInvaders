@@ -10,14 +10,19 @@ public class Textures {
 	public BufferedImage[] missile = new BufferedImage[3];
 	
 	private SpriteSheet ss;
-	
+	/**
+	 * 
+	 * @param game instancia del juego
+	 */
 	public Textures(Game game) {
 		ss = new SpriteSheet(game.getSpriteSheet());
 		
 		getTextures();
 		
 	}
-	
+	/**
+	 * Obtiene imagenes del sprite_sheet.png
+	 */
 	private void getTextures() {
 		//player = ss.grabImage(1, 1, 32, 32);
 		player[0] = ss.grabImage(1, 1, 32, 32);

@@ -11,7 +11,10 @@ public class Menu {
 	public Rectangle playButton = new Rectangle(Game.WIDTH /2 + 120 ,150 ,100 ,50);
 	public Rectangle helpButton = new Rectangle(Game.WIDTH /2 + 120 ,250 ,100 ,50);
 	public Rectangle quitButton = new Rectangle(Game.WIDTH /2 + 120 ,350 ,100 ,50);
-	
+	/**
+	 * Despliega rectangulos en el menu
+	 * @param g para crear rectangulos
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		

@@ -18,17 +18,26 @@ public class Controller {
 	private Textures tex;
 	Random r = new Random();
 	private Game game;
-	
+	/**
+	 * 
+	 * @param tex imagen
+	 * @param game instancia del juego
+	 */
 	public Controller(Textures tex,Game game) {
 		this.tex = tex;
 		this.game = game;
 	}
-	
+	/**
+	 * 
+	 * @param enemy_count cuantos enemigos hay
+	 */
 	public void createEnemy(int enemy_count) {
 		for(int i = 0; i < enemy_count; i++)
 			addEntity(new Enemy(r.nextInt(640),-10,tex,this,game));
 	}
-	
+	/**
+	 * Actualiza pantalla
+	 */
 	public void tick() {
 		for(int i = 0; i < ea.size(); i++) {
 				enta = ea.get(i);
@@ -41,7 +50,10 @@ public class Controller {
 			entb.tick();
 	}
 	}
-	
+	/**
+	 * Muestra en pantalla
+	 * @param g 
+	 */
 	public void render(Graphics g) {
 		for(int i = 0; i < ea.size(); i++) {
 			enta = ea.get(i);

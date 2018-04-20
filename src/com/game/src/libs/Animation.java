@@ -2,7 +2,11 @@ package com.game.src.libs;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
+/**
+ * 
+ * @author Saproi
+ * Carga hasta 14 frames de animación
+ */
 public class Animation {
 
 	private int speed;
