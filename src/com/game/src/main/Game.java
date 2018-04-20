@@ -30,7 +30,7 @@ public class Game extends Canvas implements Runnable {
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
 	
-	private boolean is_shooting = false;
+	private boolean is_shooting = false,left = false,right = false;
 	
 	private int enemy_count = 5;
 	private int enemy_killed = 0;
@@ -72,7 +72,7 @@ public class Game extends Canvas implements Runnable {
 		
 		
 		c = new Controller(tex,this);
-		p = new Player(200, 200, tex,this,c);
+		p = new Player(320, 500, tex,this,c);
 		menu = new Menu();
 		
 		ea = c.getEntityA();
@@ -212,13 +212,13 @@ public class Game extends Canvas implements Runnable {
 		
 		if(State == STATE.GAME) {
 			if(key == KeyEvent.VK_RIGHT) {
+				
 				p.setVelX(5);
+				right = true;
 			}else if(key == KeyEvent.VK_LEFT) {
+				
 				p.setVelX(-5);
-			}else if(key == KeyEvent.VK_DOWN) {
-				p.setVelY(5);
-			}else if(key == KeyEvent.VK_UP) {
-				p.setVelY(-5);
+				left = true;
 			}else if(key == KeyEvent.VK_SPACE && !is_shooting) {
 				is_shooting = true;
 				c.addEntity(new Bullet(p.getX(),p.getY(),tex, this));
@@ -235,13 +235,13 @@ public class Game extends Canvas implements Runnable {
 		
 		if(State == STATE.GAME) {
 			if(key == KeyEvent.VK_RIGHT) {
+				
 				p.setVelX(0);
+				right = false;
 			}else if(key == KeyEvent.VK_LEFT) {
+				
 				p.setVelX(0);
-			}else if(key == KeyEvent.VK_DOWN) {
-				p.setVelY(0);
-			}else if(key == KeyEvent.VK_UP) {
-				p.setVelY(0);
+				left = false;
 			}else if(key == KeyEvent.VK_SPACE) {
 				is_shooting = false;
 			}
