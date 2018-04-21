@@ -31,8 +31,11 @@ public class Controller {
 	 * @param enemy_count cuantos enemigos hay
 	 */
 	public void createEnemy(int enemy_count) {
-		for(int i = 0; i < enemy_count; i++)
-			addEntity(new Enemy(r.nextInt(640),-10,tex,this,game));
+		int d = 0;
+		for(int i = 0; i < enemy_count; i++) {
+			addEntity(new Enemy(d,-10,tex,this,game));
+			d += 32;
+		}
 	}
 	/**
 	 * Actualiza pantalla

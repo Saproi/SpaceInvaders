@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean left = false;
 	private boolean right = false;
 	
-	private int enemy_count = 5;
+	private int enemy_count = 9;
 	private int enemy_killed = 0;
 
 	private Player p;
@@ -155,9 +155,8 @@ public class Game extends Canvas implements Runnable {
 			c.tick();
 		}
 		
-		if(enemy_killed >= enemy_count)
-		{
-			enemy_count += 2;
+		if(enemy_killed == 9){
+			enemy_count = 9;
 			enemy_killed = 0;
 			c.createEnemy(enemy_count);
 		}

@@ -14,7 +14,7 @@ public class Enemy extends GameObject implements EntityB{
 	private Game game;
 	private Controller c;
 	
-	private int speed = r.nextInt(3) + 1;
+	private int speed = 2;
 	
 	/**
 	 * 
@@ -35,12 +35,12 @@ public class Enemy extends GameObject implements EntityB{
 	 * Actualiza pantalla
 	 */
 	public void tick() {
-		y += speed;
 		
-		if(y > Game.HEIGHT * Game.SCALE) {
-			speed = r.nextInt(3) + 1;
-			x = r.nextInt(640);
-			y = -10;
+		if(x>640) {
+			y += 32;
+			x = 0;
+		}else {
+			x += speed;
 		}
 		
 		for(int i = 0;i < game.ea.capacidad();i++)
