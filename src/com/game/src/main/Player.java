@@ -3,19 +3,16 @@ package com.game.src.main;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.game.src.libs.Animation;
 import com.game.src.main.classes.EntityA;
 import com.game.src.main.classes.EntityB;
 
 public class Player extends GameObject implements EntityA{
 	
 	private double velX = 0;
-			
 	private Textures tex;
 	
 	Game game;
 	Controller controller;
-	Animation anim;
 	/**
 	 * 
 	 * @param x posicion eje x
@@ -29,9 +26,6 @@ public class Player extends GameObject implements EntityA{
 		this.tex = tex;
 		this.game = game;
 		this.controller = controller;
-		//
-		anim = new Animation(5,tex.player[0],tex.player[1],tex.player[2]);
-
 	}
 	/**
 	 * Actualiza la pantalla
@@ -47,9 +41,9 @@ public class Player extends GameObject implements EntityA{
 			x = 0;
 		if(x >= 640 - 22)
 			x = 640 - 22;
-		for(int i = 0; i < game.eb.size();i++)
+		for(int i = 0; i < game.eb.capacidad();i++)
 		{
-			EntityB tempEnt = game.eb.get(i);
+			EntityB tempEnt = game.eb.getDato(i);
 			
 			if(Physics.Collision(this, tempEnt))
 			{
@@ -58,15 +52,12 @@ public class Player extends GameObject implements EntityA{
 				game.setEnemy_killed(game.getEnemy_killed() + 1);
 			}
 		}
-		anim.runAnimation();
 	}
 	/**
 	 * Muestra en pantalla
 	 */
 	public void render(Graphics g) {
-		//g.drawImage(tex.player, (int)x, (int)y, null);
-		//g.drawImage(tex.player[0], (int)x, (int)y, null);
-		anim.drawAnimation(g, x, y, 0);
+		g.drawImage(tex.player, (int)x, (int)y, null);
 	}
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,32,32);

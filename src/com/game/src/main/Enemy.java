@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import com.game.src.libs.Animation;
 import com.game.src.main.classes.EntityA;
 import com.game.src.main.classes.EntityB;
 
@@ -17,7 +16,6 @@ public class Enemy extends GameObject implements EntityB{
 	
 	private int speed = r.nextInt(3) + 1;
 	
-	Animation anim;
 	/**
 	 * 
 	 * @param x posicion eje x
@@ -32,7 +30,6 @@ public class Enemy extends GameObject implements EntityB{
 		this.c = c;
 		this.game = game;
 		
-		anim = new Animation(5,tex.enemy[0],tex.enemy[1],tex.enemy[2]);
 	}
 	/**
 	 * Actualiza pantalla
@@ -46,9 +43,9 @@ public class Enemy extends GameObject implements EntityB{
 			y = -10;
 		}
 		
-		for(int i = 0;i < game.ea.size();i++)
+		for(int i = 0;i < game.ea.capacidad();i++)
 		{
-			EntityA tempEnt = game.ea.get(i);
+			EntityA tempEnt = game.ea.getDato(i);
 			
 			if(Physics.Collision(this, tempEnt))
 			{
@@ -57,15 +54,12 @@ public class Enemy extends GameObject implements EntityB{
 				game.setEnemy_killed(game.getEnemy_killed() + 1);
 			}
 		}
-		anim.runAnimation();
 	}
 	/**
 	 * Muestra en pantalla 
 	 */
 	public void render(Graphics g) {
-		//g.drawImage(tex.enemy, (int)x, (int)y, null);
-		//g.drawImage(tex.enemy[0], (int)x, (int)y, null);
-		anim.drawAnimation(g, x, y, 0);
+		g.drawImage(tex.enemy, (int)x, (int)y, null);
 	}
 	/**
 	 * 

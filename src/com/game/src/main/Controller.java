@@ -1,15 +1,14 @@
 package com.game.src.main;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
 import java.util.Random;
 
 import com.game.src.main.classes.EntityA;
 import com.game.src.main.classes.EntityB;
 
 public class Controller {
-	private LinkedList<EntityA> ea = new LinkedList<EntityA>();
-	private LinkedList<EntityB> eb = new LinkedList<EntityB>();
+	private Lista<EntityA> ea = new Lista<EntityA>();
+	private Lista<EntityB> eb = new Lista<EntityB>();
 
 	
 	EntityA enta;
@@ -39,13 +38,13 @@ public class Controller {
 	 * Actualiza pantalla
 	 */
 	public void tick() {
-		for(int i = 0; i < ea.size(); i++) {
-				enta = ea.get(i);
+		for(int i = 0; i < ea.capacidad(); i++) {
+				enta = ea.getDato(i);
 				
 				enta.tick();
 		}
-		for(int i = 0; i < eb.size(); i++) {
-			entb = eb.get(i);
+		for(int i = 0; i < eb.capacidad(); i++) {
+			entb = eb.getDato(i);
 			
 			entb.tick();
 	}
@@ -55,37 +54,34 @@ public class Controller {
 	 * @param g 
 	 */
 	public void render(Graphics g) {
-		for(int i = 0; i < ea.size(); i++) {
-			enta = ea.get(i);
+		for(int i = 0; i < ea.capacidad(); i++) {
+			enta = ea.getDato(i);
 			
 			enta.render(g);
 		}
-		for(int i = 0; i < eb.size(); i++) {
-			entb = eb.get(i);
+		for(int i = 0; i < eb.capacidad(); i++) {
+			entb = eb.getDato(i);
 			
 			entb.render(g);
 		}
 	}
 	
 	public void addEntity(EntityA block) {
-		ea.add(block);
+		ea.agregar(block);
 	}
 	public void removeEntity(EntityA block) {
-		ea.remove(block);
+		ea.eliminarDato(block);
 	}
 	public void addEntity(EntityB block) {
-		eb.add(block);
+		eb.agregar(block);
 	}
 	public void removeEntity(EntityB block) {
-		eb.remove(block);
+		eb.eliminarDato(block);
 	}
-	public LinkedList<EntityA> getEntityA(){
+	public Lista<EntityA> getEntityA(){
 		return ea;
-		
-		
 	}
-	public LinkedList<EntityB> getEntityB(){
+	public Lista<EntityB> getEntityB(){
 		return eb;
-		
 	}
 }

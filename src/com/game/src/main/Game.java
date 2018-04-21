@@ -42,8 +42,8 @@ public class Game extends Canvas implements Runnable {
 	private Textures tex;
 	private Menu menu;
 	
-	public LinkedList<EntityA> ea;
-	public LinkedList<EntityB> eb;
+	public Lista<EntityA> ea;
+	public Lista<EntityB> eb;
 	
 	public static int HEALTH = 100 * 2;
 	/**

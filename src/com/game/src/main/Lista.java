@@ -1,4 +1,7 @@
 package com.game.src.main;
+
+import com.game.src.main.classes.EntityA;
+
 /**
  * clase Principal
  */
@@ -214,6 +217,5 @@ public class Lista<T> {
     	this.setPrimero(null);
     	this.setCapacidad(0);
     }
-
 
 }
