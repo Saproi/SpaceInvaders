@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.LinkedList;
 
 import javax.swing.JFrame;
 

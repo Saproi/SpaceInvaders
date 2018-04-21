@@ -1,6 +1,5 @@
 package com.game.src.main;
 
-import java.util.LinkedList;
 
 import com.game.src.main.classes.EntityA;
 import com.game.src.main.classes.EntityB;
